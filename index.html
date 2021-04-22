@@ -31,9 +31,9 @@
 					<!-- user infos -->
 					<div class="user-info flex items-center">
 						<div class="round-pic no-shrink">
-							<img src="img/avatar_io.jpg" alt="User profile pic" />
+							<img :src="`img/avatar${user.avatar}.jpg`" alt="User profile pic" />
 						</div>
-						<div class="user-name txt-center">Marcella Bella</div>
+						<div class="user-name txt-center">{{user.userFullName}}</div>
 					</div>
 					<!-- user infos ends -->
 
@@ -83,68 +83,21 @@
 					<!-- chat list -->
 					<div class="chat-list grow">
 						<!-- single chat -->
-						<div class="chat flex items-center pa-10">
+						<div
+							v-for="(contact,index) in contacts"
+							class="chat flex items-center pa-10"
+							:class="{'active' : index == user.currentActiveChat}"
+							:title="`Clicca per aprire la conversazione con ${contact.name}`"
+						>
 							<!-- user infos -->
 							<div class="chat-preview flex">
 								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
+									<img
+										:src="`img/avatar${contact.avatar}.jpg`"
+										:alt="`Foto profilo di ${contact.name}`"
+									/>
 								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
-							</div>
-							<!-- user infos ends -->
-						</div>
-						<!-- single chat -->
-						<div class="chat flex items-center pa-10">
-							<!-- user infos -->
-							<div class="flex items-center">
-								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
-								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
-							</div>
-							<!-- user infos ends -->
-						</div>
-						<!-- single chat -->
-						<div class="chat active flex items-center pa-10">
-							<!-- user infos -->
-							<div class="flex items-center">
-								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
-								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
-							</div>
-							<!-- user infos ends -->
-						</div>
-						<!-- single chat -->
-						<div class="chat flex items-center pa-10">
-							<!-- user infos -->
-							<div class="flex items-center">
-								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
-								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
-							</div>
-							<!-- user infos ends -->
-						</div>
-						<!-- single chat -->
-						<div class="chat flex items-center pa-10">
-							<!-- user infos -->
-							<div class="flex items-center">
-								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
-								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
-							</div>
-							<!-- user infos ends -->
-						</div>
-						<!-- single chat -->
-						<div class="chat flex items-center pa-10">
-							<!-- user infos -->
-							<div class="flex items-center">
-								<div class="round-pic no-shrink">
-									<img src="img/avatar_io.jpg" alt="User profile pic" />
-								</div>
-								<div class="user-name txt-center">Marcella Bella</div>
+								<div class="user-name txt-center">{{contact.name}}</div>
 							</div>
 							<!-- user infos ends -->
 						</div>
