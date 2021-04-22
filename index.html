@@ -88,6 +88,7 @@
 							class="chat flex items-center pa-10"
 							:class="{'active' : index == user.currentActiveChat}"
 							:title="`Clicca per aprire la conversazione con ${contact.name}`"
+							@click="openChat(index)"
 						>
 							<!-- user infos -->
 							<div class="chat-preview flex">
@@ -115,10 +116,13 @@
 					<!-- contact infos -->
 					<div class="user-info flex items-center">
 						<div class="round-pic no-shrink">
-							<img src="img/avatar_io.jpg" alt="User profile pic" />
+							<img
+								:src="`img/avatar${contacts[user.currentActiveChat].avatar}.jpg`"
+								:alt="`Foto profilo di ${contacts[user.currentActiveChat].name}`"
+							/>
 						</div>
 						<div class="user-name">
-							Marcella Bella
+							{{contacts[user.currentActiveChat].name}}
 							<div class="last-seen">Ultimo accesso oggi alle</div>
 						</div>
 					</div>
@@ -144,24 +148,14 @@
 				<!-- active chat container -->
 				<div class="active-chat-conv grow">
 					<!-- message row -->
-					<div class="message-row flex col">
+					<div
+						v-for="message in contacts[user.currentActiveChat].messages"
+						class="message-row flex col"
+					>
 						<!-- single message -->
-						<div class="message received">
-							<div class="msg-content">
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea fugiat
-								sunt, quia voluptate et iste beatae praesentium ut autem ducimus
-								consequatur delectus nemo accusantium, nam, cumque sint perspiciatis cum
-								ad?
-							</div>
-							<div class="msg-timestamp txt-right">28/03/2020 10:10:40</div>
-						</div>
-					</div>
-					<!-- message row -->
-					<div class="message-row flex col">
-						<!-- single message -->
-						<div class="message sent">
-							<div class="msg-content">La marianna va in campagna</div>
-							<div class="msg-timestamp txt-right">28/03/2020 10:10:40</div>
+						<div class="message" :class="{'sent': message.status=='sent'}">
+							<div class="msg-content">{{message.text}}</div>
+							<div class="msg-timestamp txt-right">{{message.date}}</div>
 						</div>
 					</div>
 				</div>
@@ -188,6 +182,7 @@
 			<!-- MAIN ENDS-->
 		</div>
 		<!-- app ends -->
+
 		<!-- custom JS -->
 		<script src="js/script.js"></script>
 	</body>

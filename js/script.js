@@ -4,7 +4,7 @@ const app = new Vue({
 		user: {
 			userFullName: "Marcella Bella",
 			avatar: "_io",
-			currentActiveChat: 1,
+			currentActiveChat: 0,
 		},
 		contacts: [
 			{
@@ -91,5 +91,11 @@ const app = new Vue({
 				],
 			},
 		],
+	},
+	methods: {
+		//opens the chat convo of the clicked contact
+		openChat: function (contactIndex) {
+			this.user.currentActiveChat = contactIndex;
+		},
 	},
 });

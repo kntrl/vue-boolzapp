@@ -226,9 +226,6 @@ main {
 	max-width: 40%;
 	min-width: 240px;
 	border-radius: 10px;
-}
-
-.message.received {
 	background-color: #fff;
 	align-self: flex-start;
 }
