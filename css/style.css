@@ -215,6 +215,7 @@ main {
 	background-image: url("../img/mine.jpg");
 	width: 100%;
 	padding: 5% 5% 0px 5%;
+	overflow-y: auto;
 }
 
 /*active chat conversation*/
@@ -252,14 +253,13 @@ main {
 	padding: 0 10px;
 }
 
-.chat-editor input {
+.text-editor input {
 	padding: 15px 10px;
 	outline: none;
 	width: 100%;
 	border: none;
 	border-radius: 5px;
 	color: #6a7376;
-	font-weight: 600;
 }
 
 /* edito icon buttons */
