@@ -156,7 +156,6 @@ nav {
 }
 
 /*chat section */
-
 .chat-section {
 	overflow: hidden;
 }
@@ -215,8 +214,41 @@ main {
 .active-chat-conv {
 	background-image: url("../img/mine.jpg");
 	width: 100%;
+	padding: 5% 5% 0px 5%;
 }
 
+/*active chat conversation*/
+.message-row {
+	padding: 5px 0px;
+}
+
+.message {
+	max-width: 40%;
+	min-width: 240px;
+	border-radius: 10px;
+}
+
+.message.received {
+	background-color: #fff;
+	align-self: flex-start;
+}
+
+.message.sent {
+	background-color: #d5f9ba;
+	align-self: flex-end;
+}
+
+.msg-content {
+	font-size: 0.9rem;
+	padding: 15px 15px 5px 15px;
+}
+
+.msg-timestamp {
+	padding-right: 5px;
+	padding-bottom: 3px;
+	font-size: 0.7rem;
+	color: #b6b9bc;
+}
 /* chat editor */
 .chat-editor {
 	background-color: #f3eeea;
@@ -233,7 +265,7 @@ main {
 	font-weight: 600;
 }
 
-/* emoticon menu */
+/* edito icon buttons */
 .chat-editor .icon {
 	cursor: pointer;
 	font-size: 1.5rem;
