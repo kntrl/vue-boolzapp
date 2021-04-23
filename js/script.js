@@ -122,17 +122,17 @@ const app = new Vue({
 			this.contacts[this.user.currentActiveChat].messages.push(newMessage);
 			//cleaning input text from new message text
 			this.user.textEditorDraft = "";
-			this.autoReply();
+			this.autoReply(this.user.currentActiveChat);
 		},
 		//generates a new message from contact and appends it to the messages after a 1000 ms delay
-		autoReply: function () {
+		autoReply: function (chatDestination) {
 			const autoReplyTimer = setTimeout(() => {
 				const newMessage = {
 					date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
 					text: "ok",
 					status: "received",
 				};
-				this.contacts[this.user.currentActiveChat].messages.push(newMessage);
+				this.contacts[chatDestination].messages.push(newMessage);
 			}, 1000);
 		},
 	},
