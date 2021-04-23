@@ -169,9 +169,13 @@
 					</div>
 					<!-- text message editor -->
 					<div class="text-editor grow pa-10">
-						<input type="text" placeholder="Scrivi un messaggio" />
+						<input
+							type="text"
+							v-model="user.textEditorDraft"
+							placeholder="Scrivi un messaggio"
+							@keyup.enter="sendMessage"
+						/>
 					</div>
-
 					<!-- audio message button -->
 					<div class="audio-msg-recorder pa-10">
 						<span class="icon"><i class="fas fa-microphone"></i></span>
@@ -183,6 +187,8 @@
 		</div>
 		<!-- app ends -->
 
+		<!-- day JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
 		<!-- custom JS -->
 		<script src="js/script.js"></script>
 	</body>

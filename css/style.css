@@ -239,6 +239,7 @@ main {
 .msg-content {
 	font-size: 0.9rem;
 	padding: 15px 15px 5px 15px;
+	word-wrap: break-word;
 }
 
 .msg-timestamp {

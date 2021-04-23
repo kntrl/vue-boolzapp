@@ -5,12 +5,14 @@ const app = new Vue({
 			userFullName: "Marcella Bella",
 			avatar: "_io",
 			currentActiveChat: 0,
+			textEditorDraft: "",
 		},
 		contacts: [
 			{
 				name: "Michele",
 				avatar: "_1",
 				visible: true,
+				draftMsg: "",
 				messages: [
 					{
 						date: "10/01/2020 15:30:55",
@@ -33,6 +35,7 @@ const app = new Vue({
 				name: "Fabio",
 				avatar: "_2",
 				visible: true,
+				draftMsg: "",
 				messages: [
 					{
 						date: "20/03/2020 16:30:00",
@@ -55,6 +58,7 @@ const app = new Vue({
 				name: "Samuele",
 				avatar: "_3",
 				visible: true,
+				draftMsg: "",
 				messages: [
 					{
 						date: "28/03/2020 10:10:40",
@@ -77,6 +81,7 @@ const app = new Vue({
 				name: "Luisa",
 				avatar: "_6",
 				visible: true,
+				draftMsg: "",
 				messages: [
 					{
 						date: "10/01/2020 15:30:55",
@@ -93,9 +98,41 @@ const app = new Vue({
 		],
 	},
 	methods: {
-		//opens the chat convo of the clicked contact
+		//opens the chat convo of the clicked contact and store current message Draft
 		openChat: function (contactIndex) {
+			//updatine active contact draftMsg
+			this.contacts[
+				this.user.currentActiveChat
+			].draftMsg = this.user.textEditorDraft;
+			//changing current active chat draft to new index
 			this.user.currentActiveChat = contactIndex;
+			//updating the text editor with the new active chat draftmsg
+			this.user.textEditorDraft = this.contacts[
+				this.user.currentActiveChat
+			].draftMsg;
+		},
+		//appends texteditor Input to contacts[currentActriveChat].messages[]
+		sendMessage: function () {
+			const newMessage = {
+				date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+				text: this.user.textEditorDraft,
+				status: "sent",
+			};
+			this.contacts[this.user.currentActiveChat].messages.push(newMessage);
+			//cleaning input text from new message text
+			this.user.textEditorDraft = "";
+			this.autoReply();
+		},
+		//generates a new message from contact and appends it to the messages after a 1000 ms delay
+		autoReply: function () {
+			const autoReplyTimer = setTimeout(() => {
+				const newMessage = {
+					date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+					text: "ok",
+					status: "received",
+				};
+				this.contacts[this.user.currentActiveChat].messages.push(newMessage);
+			}, 1000);
 		},
 	},
 });
