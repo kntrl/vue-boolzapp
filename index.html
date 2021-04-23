@@ -76,7 +76,11 @@
 						<span class="icon">
 							<i class="fas fa-search"></i>
 						</span>
-						<input type="text" placeholder="Cerca o inizia una nuova chat" />
+						<input
+							type="text"
+							v-model="user.chatFilter"
+							placeholder="Cerca o inizia una nuova chat"
+						/>
 					</div>
 					<!-- search bar ends -->
 
@@ -85,6 +89,7 @@
 						<!-- single chat -->
 						<div
 							v-for="(contact,index) in contacts"
+							v-if="contact.name.toLowerCase().includes(user.chatFilter.toLowerCase())"
 							class="chat flex items-center pa-10"
 							:class="{'active' : index == user.currentActiveChat}"
 							:title="`Clicca per aprire la conversazione con ${contact.name}`"

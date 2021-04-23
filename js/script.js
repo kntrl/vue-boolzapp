@@ -6,6 +6,7 @@ const app = new Vue({
 			avatar: "_io",
 			currentActiveChat: 0,
 			textEditorDraft: "",
+			chatFilter: "",
 		},
 		contacts: [
 			{
