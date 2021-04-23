@@ -5,6 +5,7 @@ const app = new Vue({
 			userFullName: "Marcella Bella",
 			avatar: "_io",
 			currentActiveChat: 0,
+			selectedMessage: -1,
 			textEditorDraft: "",
 			chatFilter: "",
 		},
@@ -135,25 +136,30 @@ const app = new Vue({
 				this.contacts[chatDestination].messages.push(newMessage);
 			}, 1000);
 		},
-		//returns last time user was online or false if undefined
+		//returns last time contact was online or false if undefined
 		lastSeen: function (contact) {
 			receivedMsg = this.msgSentByContact(contact);
 			return receivedMsg.length > 0
 				? receivedMsg[receivedMsg.length - 1].date
 				: false;
 		},
-		//returns last message obj sent from Contact
+		//returns last message obj sent from Contact param.
 		lastMessage: function (contact) {
 			receivedMsg = this.msgSentByContact(contact);
 			return receivedMsg.pop();
 		},
-		//returns an array of msg obj with "received" status
+		//returns an array of msg obj with "received" status from contact param.
 		msgSentByContact: function (contact) {
 			const clone = { ...contact };
 			const receivedMsg = clone.messages.filter(
 				(element) => element.status == "received"
 			);
 			return receivedMsg;
+		},
+		//deletes messages[index] from contacts[currentActiveChat]
+		deleteMsg: function (index) {
+			console.log(this);
+			this.contacts[this.user.currentActiveChat].messages.splice(index, 1);
 		},
 	},
 });

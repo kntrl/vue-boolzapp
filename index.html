@@ -167,13 +167,31 @@
 				<div class="active-chat-conv grow">
 					<!-- message row -->
 					<div
-						v-for="message in contacts[user.currentActiveChat].messages"
+						v-for="(message,index) in contacts[user.currentActiveChat].messages"
 						class="message-row flex col"
 					>
 						<!-- single message -->
-						<div class="message" :class="{'sent': message.status=='sent'}">
+						<div
+							class="message"
+							@mouseleave="user.selectedMessage = -1"
+							:class="{'sent': message.status=='sent'}"
+						>
 							<div class="msg-content">{{message.text}}</div>
 							<div class="msg-timestamp txt-right">{{message.date}}</div>
+							<div class="msg-menu txt-center">
+								<div class="chevron txt-right" @click="user.selectedMessage = index">
+									<i class="fas fa-chevron-down"></i>
+								</div>
+								<div
+									class="dropdown txt-center pa-10"
+									v-if="user.selectedMessage == index"
+								>
+									<ul>
+										<li>Info messaggio</li>
+										<li @click="deleteMsg(index)">Cancella messaggio</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
