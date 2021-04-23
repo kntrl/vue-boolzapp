@@ -102,14 +102,13 @@ body {
 /* APP LAYOUT*/
 nav,
 main {
-	flex-shrink: 0;
 	flex-grow: 0;
 	overflow: hidden;
 }
 
 /*NAV*/
 nav {
-	flex-basis: 35%;
+	flex-basis: 30%;
 	border-right: 1px solid #b1b1b1;
 }
 
@@ -122,11 +121,11 @@ nav {
 .user-info .round-pic {
 	width: 55px;
 	height: 55px;
-	flex-shrink: 0;
 	background-color: #fff;
 }
 
 .user-name {
+	min-width: 90px;
 	padding-left: 5px;
 	font-weight: bold;
 }
@@ -160,14 +159,16 @@ nav {
 	overflow: hidden;
 }
 
-nav .chat-list {
+.chat-list {
 	background-color: #fff;
 	overflow-y: auto;
 }
+
 .chat-list .chat:not(:last-child) {
 	border-bottom: 1px solid #f5f5f5;
 }
 
+/*single chat row*/
 .chat {
 	cursor: pointer;
 }
@@ -176,8 +177,26 @@ nav .chat-list {
 	background-color: #e9ebea;
 }
 
-.chat.active .round-pic {
-	background-color: #f2f2f2;
+.chat-list div {
+	overflow: hidden;
+}
+
+/*chat preview*/
+
+.chat-info {
+	flex-basis: 30%;
+}
+.last-message {
+	padding-left: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.last-message,
+.last-message-date {
+	font-size: 0.75rem;
+	color: #b6b9bc;
 }
 /*search bar */
 .search-bar {

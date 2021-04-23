@@ -135,5 +135,25 @@ const app = new Vue({
 				this.contacts[chatDestination].messages.push(newMessage);
 			}, 1000);
 		},
+		//returns last time user was online or false if undefined
+		lastSeen: function (contact) {
+			receivedMsg = this.msgSentByContact(contact);
+			return receivedMsg.length > 0
+				? receivedMsg[receivedMsg.length - 1].date
+				: false;
+		},
+		//returns last message obj sent from Contact
+		lastMessage: function (contact) {
+			receivedMsg = this.msgSentByContact(contact);
+			return receivedMsg.pop();
+		},
+		//returns an array of msg obj with "received" status
+		msgSentByContact: function (contact) {
+			const clone = { ...contact };
+			const receivedMsg = clone.messages.filter(
+				(element) => element.status == "received"
+			);
+			return receivedMsg;
+		},
 	},
 });

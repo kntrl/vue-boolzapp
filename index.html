@@ -30,7 +30,7 @@
 				<div class="user-section flex items-center pa-10">
 					<!-- user infos -->
 					<div class="user-info flex items-center">
-						<div class="round-pic no-shrink">
+						<div class="round-pic no-shrink no-shrink">
 							<img :src="`img/avatar${user.avatar}.jpg`" alt="User profile pic" />
 						</div>
 						<div class="user-name txt-center">{{user.userFullName}}</div>
@@ -58,7 +58,7 @@
 				<!-- notification section -->
 				<div class="notification-section flex items-center pa-10">
 					<div class="notification-alert flex items-center">
-						<div class="round-pic txt-center no-shrink">
+						<div class="round-pic no-shrink txt-center no-shrink">
 							<span class="icon"><i class="fas fa-bell-slash"></i></span>
 						</div>
 						<div>
@@ -96,14 +96,25 @@
 							@click="openChat(index)"
 						>
 							<!-- user infos -->
-							<div class="chat-preview flex">
-								<div class="round-pic no-shrink">
+							<div class="chat-preview flex grow">
+								<div class="round-pic no-shrink no-shrink">
 									<img
 										:src="`img/avatar${contact.avatar}.jpg`"
 										:alt="`Foto profilo di ${contact.name}`"
 									/>
 								</div>
-								<div class="user-name txt-center">{{contact.name}}</div>
+								<div class="chat-info grow">
+									<div class="user-name">{{contact.name}}</div>
+									<div class="last-message" v-if="lastMessage(contact)">
+										{{lastMessage(contact).text}}
+									</div>
+								</div>
+								<div
+									v-if="lastMessage(contact)"
+									class="last-message-date txt-right grow"
+								>
+									{{lastMessage(contact).date}}
+								</div>
 							</div>
 							<!-- user infos ends -->
 						</div>
@@ -115,12 +126,12 @@
 			<!-- left NAV ends -->
 
 			<!-- MAIN -->
-			<main class="flex col">
+			<main class="flex no-shrink col">
 				<!-- contact profile  section-->
 				<div class="user-section flex items-center pa-10">
 					<!-- contact infos -->
 					<div class="user-info flex items-center">
-						<div class="round-pic no-shrink">
+						<div class="round-pic no-shrink no-shrink">
 							<img
 								:src="`img/avatar${contacts[user.currentActiveChat].avatar}.jpg`"
 								:alt="`Foto profilo di ${contacts[user.currentActiveChat].name}`"
@@ -128,7 +139,9 @@
 						</div>
 						<div class="user-name">
 							{{contacts[user.currentActiveChat].name}}
-							<div class="last-seen">Ultimo accesso oggi alle</div>
+							<div v-if="lastSeen(contacts[user.currentActiveChat])" class="last-seen">
+								Ultimo accesso: {{lastSeen(contacts[user.currentActiveChat])}}
+							</div>
 						</div>
 					</div>
 					<!-- contact infos ends -->
